@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="stylesheet" href="https://unpkg.com/leaflet/dist/leaflet.css" />
+  <style>
+    #map {
+      height: 400px;
+    }
+    #form-container {
+      position: absolute;
+      top: 10px;
+      left: 10px;
+      background: white;
+      padding: 10px;
+      z-index: 1000;
+    }
+  </style>
+  <title>OSM Map with Rectangle and Form</title>
+</head>
+<body>
+
+<div id="map"></div>
+
+<script src="https://unpkg.com/leaflet/dist/leaflet.js"></script>
+<script>
+  var map = L.map('map').setView([51.505, -0.09], 13);
+  L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png').addTo(map);
+
+  var rectangle = L.rectangle([
+    [51.49, -0.15],
+    [51.51, -0.11]
+  ]).addTo(map);
+
+  var formHtml = `
+    <div id="form-container">
+      <form>
+        <label for="input1">Input 1:</label>
+        <input type="text" id="input1" name="input1">
+        <br>
+        <label for="input2">Input 2:</label>
+        <input type="text" id="input2" name="input2">
+        <br>
+        <button type="submit">Submit</button>
+      </form>
+    </div>
+  `;
+
+  rectangle.bindPopup(formHtml).openPopup();
+</script>
+
+</body>
+</html>

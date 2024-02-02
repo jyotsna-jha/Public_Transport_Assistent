@@ -1,0 +1,133 @@
+{% load static %}
+<!DOCTYPE html>
+<html>
+<head>
+<title>Public Transport Assistent</title>
+ 
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+
+
+
+     <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" />
+     <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
+     <script src="https://unpkg.com/leaflet-routing-machine/dist/leaflet-routing-machine.js"></script>
+     
+     <script src="https://cdn.maptiler.com/maptiler-sdk-js/v1.2.0/maptiler-sdk.umd.js"></script>
+     <link href="https://cdn.maptiler.com/maptiler-sdk-js/v1.2.0/maptiler-sdk.css" rel="stylesheet" />
+     <script src="https://cdn.maptiler.com/leaflet-maptilersdk/v2.0.0/leaflet-maptilersdk.js"></script>
+     <script src="https://cdn.maptiler.com/maptiler-geocoding-control/v1.2.0/leaflet.umd.js"></script>
+     <link href="https://cdn.maptiler.com/maptiler-geocoding-control/v1.2.0/style.css" rel="stylesheet">
+     
+
+    <!-- GraphHopper JS -->
+    <script src="{% static 'js/lrm-graphhopper.js' %}"></script>
+    <script src="https://unpkg.com/graphhopper-js-api-client/dist/graphhopper-client.js"></script>
+
+
+
+<style>
+    body, html {
+    height: 100%;
+    font-family: "Inconsolata", sans-serif;
+    background-color: whitesmoke;
+    }
+
+    .bgimg {
+        background-position: center;
+        background-size: cover;
+        background-image: url("/images/bus.png");
+        min-height: 75%;
+    }
+
+</style>
+
+</head>
+<body>
+
+<!-- ======================================================================================================= -->
+ 
+<!-- 1st Sidebar Large Screen-->
+<nav class="w3-sidebar  w3-blue-grey w3-collapse w3-top w3-large w3-padding" style="z-index:3;width:70px;font-weight:bold;" id="mySidebar"><br>
+    <a href="javascript:void(0)" onclick="w3_close()" class="w3-button w3-hide-large w3-display-topleft" style="width:100%;font-size:22px">Close Menu</a>
+    <br>
+    <button class="button w3-xlarge w3-round-large" onclick="w3_open()"><img src="{% static "images/map.png" %}" style="height: 20px;"></button>
+    <div >
+    </div>
+</nav>
+
+<!-- 1st Sidebar Small Screen-->
+<header class="w3-container w3-top w3-hide-large w3-blue-grey w3-xlarge w3-padding">
+    <a href="javascript:void(0)" class="w3-button  w3-margin-right" onclick="w3_open()">☰</a>
+    <span>Hamro Kathmandu</span>
+</header>
+
+
+<!-- 2nd Sidebar  Large Screen-->
+<div class="w3-sidebar w3-bar-block w3-border-right w3-hide-small w3-animate-left" style="display:none; position: relative; top: 0; left: 70px;" id="x">
+    <button onclick="w3_close()" class="w3-bar-item w3-round w3-text-red w3-border w3-serif">CLOSE &times;</button>
+    <br>
+    {% include 'Elements/forms.html' %}
+</div>
+
+<!-- 2nd Sidebar  Small Screen-->
+<div class="w3-sidebar w3-bar-block w3-border-right w3-hide-large w3-animate-left" style="display:none; position: relative; top: 0; left:0px;" id="x">
+    <button onclick="w3_close()" class="w3-bar-item w3-round w3-text-red w3-border w3-serif">CLOSE &times;</button>
+    <br>
+    {% include 'Elements/forms.html' %}
+</div>
+
+
+
+
+<!-- Overlay effect when opening sidebar on small screens -->
+<div class="w3-overlay w3-hide-large" onclick="w3_close()" style="cursor:pointer" title="close side menu" id="myOverlay"></div>
+<!-- ======================================================================================================= -->
+ 
+<!-- !PAGE CONTENT! -->
+<div class="w3-main" style="margin-left:70px;margin-right:1px">
+
+{% block content %}
+
+
+
+
+{% endblock %}
+
+</div>
+
+<script>
+    // Script to open and close sidebar
+    function w3_open() {
+    document.getElementById("mySidebar").style.display = "block";
+    document.getElementById("myOverlay").style.display = "block";
+    }
+        
+    function w3_close() {
+    document.getElementById("mySidebar").style.display = "none";
+    document.getElementById("myOverlay").style.display = "none";
+    }
+        
+    // Modal Image Gallery
+    function onClick(element) {
+    document.getElementById("img01").src = element.src;
+    document.getElementById("modal01").style.display = "block";
+    var captionText = document.getElementById("caption");
+    captionText.innerHTML = element.alt;
+    }
+
+
+
+    function w3_open() {
+        document.getElementById("x").style.display = "block";
+    }
+        
+    function w3_close() {
+        document.getElementById("x").style.display = "none";
+    }
+
+</script>
+       
+</body>

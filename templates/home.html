@@ -1,0 +1,85 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block content %}
+
+<link rel="stylesheet" href="{% static 'css/leaflet_routing.css' %}">
+
+<style>
+    #map {
+        position: relative;
+        height: 100vh;
+        margin: 0;
+        padding: 0;
+        z-index: 0;
+    }
+
+    #hello-world-card {
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+        padding: 20px;
+        background-color: rgba(255, 255, 255, 0.8);
+        border-radius: 10px;
+        text-align: center;
+        font-size: 24px;
+        z-index: 160;
+    }
+
+    #search-bar {
+        position: fixed;
+        top: 10px;
+        right: 10px;
+        background: none;
+        padding: 10px;
+        z-index: 1000;
+    }
+
+    #suggestions {
+        list-style: none;
+        padding: 0;
+        display: none;
+    }
+</style>
+
+<div>
+    <div id="map">
+        <div id="hello-world-card">
+            <p>Public Transport Assistant</p>
+        </div>
+    </div>  
+
+    <!--This form is handled by : 5_userform.js-->
+    <div id="search-bar" class="w3-card w3-round-large">
+        <form id="search-form">
+          <label for="destination-location"><img src="{% static "images/dest.png" %}" style="height: 22px;"></label>
+          <input type="text" id="destination-location" placeholder="Enter Destination" name="destination-location">
+          <ul id="suggestions"></ul>
+        </form>
+    </div>
+
+</div>
+
+<!-- Accessing variables from response_data -->
+<!-- Your existing code for displaying location information -->
+
+<!-- Use json_script to safely output Python variables as JSON in a script tag -->
+{{ my_location_lat_long|json_script:"myLoc" }}
+{{ nearest_user_station_lat_long|json_script:"nearestMyLoc" }}
+{{ nearest_dest_station_lat_long|json_script:"nearestDestLoc" }}
+{{ dest_location_lat_long|json_script:"destLoc" }}
+{{ stations|json_script:"stationData" }}
+
+<script src="{% static 'js/1_outputMenu.js' %}"></script>
+<script src="{% static 'js/2_loadmap.js' %}"></script>
+<script src="{% static 'js/3_myLocation.js' %}"></script>
+<script src="{% static 'js/4_routing.js' %}"></script>
+<script src="{% static 'js/dummy1.js' %}"></script>
+<script src="{% static 'js/5_userform.js' %}"></script>
+
+<!-- Add the new JavaScript code for handling location suggestions -->
+<script>
+    
+</script>
+
+{% endblock %}
