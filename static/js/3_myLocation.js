@@ -31,7 +31,7 @@ function getLocation() {
     }
 }
 
-// Get and update the location every 1 seconds (you can adjust the interval as needed)
+// Get and update the location every 0.1 seconds (you can adjust the interval as needed)
 setInterval(getLocation, 100);
 
 

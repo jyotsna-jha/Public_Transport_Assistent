@@ -76,7 +76,7 @@ class StationInfoListAV(APIView):
         serializer = StationInfoSerializer(queryset, many=True)
         return Response(serializer.data, status = status.HTTP_200_OK)
     
-
+ 
 class StationInfoDetailAV(APIView):
     def get(self, request, pk):
         try:
@@ -116,7 +116,7 @@ class RouteInfoDetailAV(APIView):
         serializer = RouteInfoSerializer(queryset)
         return Response(serializer.data, status = status.HTTP_200_OK)
     
-
+ 
 class RouteStationInfoDetailAV(APIView):
     def get(self, request, pk):
         try:

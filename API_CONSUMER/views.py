@@ -27,7 +27,7 @@ def Get_Stations(request):
     return render(request, 'home.html', context)
 
 
-
+ 
 def Post_GPS_Location(request, deviceid, latitude, longitude):
     latitude = float(latitude)
     longitude = float(longitude)
@@ -84,8 +84,8 @@ def Post_GPS_Location(request, deviceid, latitude, longitude):
 
 
 
-def home(request):
-    return render(request, 'base1.html')
+# def home(request):
+#     return render(request, 'base1.html')
 
 
 

@@ -8,7 +8,7 @@ class StationInfo(models.Model):
     station_nepali_name = models.CharField(max_length=100)
     station_latitude = models.FloatField()
     station_longitude = models.FloatField()
-
+ 
     def __str__(self):
         return f"Station ID : {self.station_id}  :  {self.station_english_name}"
   
@@ -21,7 +21,7 @@ class RouteInfo(models.Model):
 
     def __str__(self):
         return f"Route ID : {self.route_id}:  {self.route_english_name}"
-
+ 
 
 class RouteStationInfo(models.Model):
     route_info = models.ForeignKey(RouteInfo, on_delete=models.CASCADE, related_name="route_information")

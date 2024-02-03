@@ -6,4 +6,4 @@ urlpatterns = [
     path("post_to_backup_gps_data/", BackupGPSDataAV.as_view(), name='post_to_backup_gps_data')
 ]
 
- 
+  

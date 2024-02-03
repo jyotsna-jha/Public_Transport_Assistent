@@ -1,5 +1,5 @@
 <div id='formhandling' >
-    <form id="myForm" class="w3-padding" style="max-width: 350px;" method="post" action="">
+    <form id="myForm" class="w3-padding" style="max-width: 350px;" method="post" >
         {% csrf_token %}
         <input id="loc1" class="w3-input w3-border-red w3-round w3-serif padding" name="userlocation" type="text" placeholder="Your Location">
         <input id="loc2" class="w3-input w3-border-red w3-round w3-serif padding" name="destlocation" type="text" placeholder="Destination Location">
@@ -11,6 +11,7 @@
 </div>
 
  
+
 <script>
 
     const searchInput = document.getElementById('loc2');
@@ -31,6 +32,7 @@
         return nepalSuggestions.map(hit => hit.name);
     }
 
+    
     // Function to update the suggestions list based on user input
     async function updateSuggestions() {
         const query = searchInput.value.trim();

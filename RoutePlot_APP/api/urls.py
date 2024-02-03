@@ -5,7 +5,7 @@ from RoutePlot_APP.api.views import (StationInfoListAV, StationInfoDetailAV,
                                      RouteStationInfoList1, RouteStationInfoList2, RouteStationInfoList3,
                                      nearest_station_info)
 
-
+ 
 urlpatterns = [
 
     path('get-complete-stationinfo/', StationInfoListAV.as_view(), name='station-list'),

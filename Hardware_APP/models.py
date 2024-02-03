@@ -1,5 +1,5 @@
 from django.db import models
-from RoutePlot_APP.models import RouteInfo, StationInfo
+from RoutePlot_APP.models import RouteInfo
 
 # Create your models here.
  
@@ -9,19 +9,8 @@ class DeviceID(models.Model):
     device_name = models.CharField(max_length=255)
 
     def __str__(self):
-        return f"Device Name: {self.device_name} --> DeviceID {self.device_id} --> RouteID: {self.route_id}"
+        return f"Device Name: {self.device_name} --> DeviceID {self.device_id} "
     
-# class DeviceRouteStationInfo(models.Model):
-#     route_information = models.ForeignKey(RouteInfo, on_delete=models.CASCADE, related_name='route_ko_id')
-#     station_information = models.ForeignKey(StationInfo, on_delete=models.CASCADE, related_name='station_ko_id')
-#     device_information = models.ForeignKey(DeviceID, on_delete=models.CASCADE, related_name='device_ko_id')
-    
-#     def __str__(self):
-#         return f'''RouteID: {self.route_information.route_id} --> 
-#                    StationID: {self.station_information.station_id} --> 
-#                    DeviceID: {self.device_information.device_id}-->
-#                    DeviceName: {self.device_information.device_name}-->
-#                    '''
 
 class RealTimeUpdate(models.Model):
     current_device_id = models.ForeignKey(DeviceID, on_delete =models.CASCADE, related_name="current_location")
