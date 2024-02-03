@@ -3,7 +3,7 @@ const nearestMyLoc = JSON.parse(document.getElementById('nearestMyLoc').textCont
 const nearestDestLoc = JSON.parse(document.getElementById('nearestDestLoc').textContent);
 const destLoc = JSON.parse(document.getElementById('destLoc').textContent);
 
-
+ 
 // Create routing control for foot profile (myLoc to nearestMyLoc)
 L.Routing.control({
     router: L.Routing.graphHopper('8e95a1e4-6d07-488c-8f23-d95874da0c18'),

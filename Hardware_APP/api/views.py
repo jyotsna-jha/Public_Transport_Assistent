@@ -3,7 +3,7 @@ from rest_framework.views import APIView
 from rest_framework import status
 
 from Hardware_APP.api.serializers import RealTimeUpdateSerializer, BackupGPSDataSerializer
-from Hardware_APP.models import RealTimeUpdate, BackupGPSData
+from Hardware_APP.models import RealTimeUpdate, BackupGPSData, DeviceID
 
 '''
 def post(self, request):
@@ -27,6 +27,15 @@ def post(self, request):
         except Exception as e:
             return Response({"error": str(e)}, status=status.HTTP_500_INTERNAL_SERVER_ERROR)
 ''' 
+
+
+
+def get_number_of_active_buses_in_particularRoute(requests):
+    
+    pass
+
+
+
 
 class RealTimeUpdateAV(APIView):
     def post(self, request):
@@ -70,8 +79,6 @@ class BackupGPSDataAV(APIView):
         queryset = BackupGPSData.objects.all()
         serializer = BackupGPSDataSerializer(queryset, many=True)
         return Response(serializer.data, status = status.HTTP_200_OK)
-
-
 
 
 

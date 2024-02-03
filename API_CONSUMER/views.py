@@ -3,31 +3,59 @@ from django.shortcuts import render
 from django.http import JsonResponse
  
  
-def Get_Stations(request):
-    api_url = "http://localhost:8000/api/get-complete-stationinfo/"
-    response = requests.get(api_url) # Make an HTTP request to the API
+# def Get_Stations(request):
+#     api_url = "http://localhost:8000/api/get-complete-stationinfo/"
+#     response = requests.get(api_url) # Make an HTTP request to the API
+
+#     if response.status_code == 200:
+#         json_data = response.json()
+#         stations_data = []
+
+#         for i in range(min(20, len(json_data))): # Extract latitude and longitude from the API response
+#             latitude = json_data[i]['station_latitude']
+#             longitude = json_data[i]['station_longitude']
+#             stations_data.append({'latitude': latitude, 'longitude': longitude})
+
+#         context = {
+#             "stations": stations_data
+#         }
+
+#     else:
+#         context = {
+#             "error_message": f"Failed to fetch data from the API. Status code: {response.status_code}"
+#         }
+#     return render(request, 'home.html', context)
+
+
+def Get_Routes(request):
+    api_url = "http://localhost:8000/api/get-complete-routeinfo/"
+    response = requests.get(api_url)
 
     if response.status_code == 200:
         json_data = response.json()
-        stations_data = []
+        routes_data = []
 
-        for i in range(min(20, len(json_data))): # Extract latitude and longitude from the API response
-            latitude = json_data[i]['station_latitude']
-            longitude = json_data[i]['station_longitude']
-            stations_data.append({'latitude': latitude, 'longitude': longitude})
-
+        for item in json_data:  # Iterate over the list directly
+            route_id = item['id']
+            route_actual_id = item['route_id']
+            route_name = item['route_english_name']
+            route_start = item['start']
+            route_end = item['end']
+            
+            routes_data.append({'route_id': route_id,
+                                'route_actual_id': route_actual_id,
+                                'route_name': route_name,
+                                'route_start': route_start,
+                                'route_end': route_end})
+        
         context = {
-            "stations": stations_data
+            "routes_variable": routes_data
         }
 
-    else:
-        context = {
-            "error_message": f"Failed to fetch data from the API. Status code: {response.status_code}"
-        }
     return render(request, 'home.html', context)
 
 
- 
+
 def Post_GPS_Location(request, deviceid, latitude, longitude):
     latitude = float(latitude)
     longitude = float(longitude)
@@ -83,9 +111,10 @@ def Post_GPS_Location(request, deviceid, latitude, longitude):
     return JsonResponse(data)
 
 
-
 # def home(request):
 #     return render(request, 'base1.html')
+
+
 
 
 

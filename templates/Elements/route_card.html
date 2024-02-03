@@ -1,0 +1,31 @@
+{% load static %}
+<link rel="stylesheet" href="{% static 'css/routecard.css' %}">
+
+
+
+<h1>Route Information</h1>
+
+{% if routes_variable %}
+    <ul>
+        {% for route in routes_variable %}
+            <li>
+                <strong>Route Number:</strong> {{ route.route_id }}<br>
+                <strong>Route Name:</strong> {{ route.route_name }}<br>
+                <strong>Route Start:</strong> {{ route.route_start }}<br>
+                <strong>Route End:</strong> {{ route.route_end }}<br>
+                <hr>
+            </li>
+        {% endfor %}
+    </ul>
+{% else %}
+    <p>No routes available.</p>
+{% endif %}
+
+
+
+
+
+
+
+
+

@@ -40,7 +40,7 @@ def nearest_station_info(request, userlocation, destlocation):
     nearest_user_station_loc = (nearest_user_station.station_latitude, nearest_user_station.station_longitude)
     nearest_dest_station_loc = (nearest_dest_station.station_latitude, nearest_dest_station.station_longitude)
  
-    #Return the response
+    #Return the response 
     response_data = {
         'my_location_name': userlocation,
         'my_location_lat_long': user_location,
